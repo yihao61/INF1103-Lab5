@@ -62,7 +62,7 @@ def update_stock(inv):
     idinp = input("Enter Product ID: ")
     for dict in inv:
         if idinp == dict["id"]:
-            print(f"\nProduct Found:\nName: {dict["name"]}\nCurrent Stock: {dict["stock"]}\n")
+            print(f"\nProduct Found:\nName: {dict['name']}\nCurrent Stock: {dict['stock']}\n")
             while True:
                 usrinp = input("New Stock Quantity: ")
                 try:
@@ -85,7 +85,7 @@ def search_product(inv):
         if dict["id"] == idinp:
             print("\nProduct Found!")
             print("------------------------------------------------")
-            print(f"ID: {dict["id"]}\nName: {dict["name"]}\nPrice: ${dict["price"]}\nStock: {dict["stock"]}")
+            print(f"ID: {dict['id']}\nName: {dict['name']}\nPrice: ${dict['price']}\nStock: {dict['stock']}")
             print("------------------------------------------------")
             found = True
 
@@ -98,7 +98,7 @@ def display_all(inv):
     print("\nCurrent Inventory\n"
           "------------------------------------------------")
     for dict in inv:
-        print(f"ID: {dict["id"]} | Name: {dict["name"]} | Price: ${dict["price"]} | Stock: {dict["stock"]}")
+        print(f"ID: {dict['id']} | Name: {dict['name']} | Price: ${dict['price']} | Stock: {dict['stock']}")
     print("------------------------------------------------")
     return
 
