@@ -57,8 +57,24 @@ def add_product(inv):
     inv.append(newprod)
     return inv
 
-def update_stock():
-    return
+def update_stock(inv):
+    print("\nUpdate Stock")
+    idinp = input("Enter Product ID: ")
+    for dict in inv:
+        if idinp == dict["id"]:
+            print(f"\nProduct Found:\nName: {dict["name"]}\nCurrent Stock: {dict["stock"]}\n")
+            while True:
+                usrinp = input("New Stock Quyantity: ")
+                try:
+                    validn = int(usrinp)
+                    dict["stock"] = validn
+                    print("Stock updated successfully!")
+                    break
+                except ValueError:
+                    print("Invalid Stock Quantity Entered! Try Again.")
+    
+    
+    return inv
 
 def search_product():
     return
