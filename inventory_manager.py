@@ -7,7 +7,7 @@ def add_product(inv):
     Adding = True
     progress = 0
     newprod = {}
-    print("Please Enter New Product Below:")
+    print("Add New Product")
     while Adding:
         if progress == 0:
             idinp = input("Product ID: ")
@@ -51,7 +51,7 @@ def add_product(inv):
             newprod["stock"] = valids
             progress+=1
         else:
-            print("\nProduct added successfully!\n")
+            print("\nProduct added successfully!")
             Adding = False
             
     inv.append(newprod)
@@ -64,11 +64,11 @@ def update_stock(inv):
         if idinp == dict["id"]:
             print(f"\nProduct Found:\nName: {dict["name"]}\nCurrent Stock: {dict["stock"]}\n")
             while True:
-                usrinp = input("New Stock Quyantity: ")
+                usrinp = input("New Stock Quantity: ")
                 try:
                     validn = int(usrinp)
                     dict["stock"] = validn
-                    print("Stock updated successfully!")
+                    print("\nStock updated successfully!")
                     break
                 except ValueError:
                     print("Invalid Stock Quantity Entered! Try Again.")
@@ -76,13 +76,29 @@ def update_stock(inv):
     
     return inv
 
-def search_product():
+def search_product(inv):
+    found = False
+    print("\nSearch Product")
+    idinp = input("Enter Product ID: ")
+
+    for dict in inv:
+        if dict["id"] == idinp:
+            print("\nProduct Found!")
+            print("------------------------------------------------")
+            print(f"ID: {dict["id"]}\nName: {dict["name"]}\nPrice: ${dict["price"]}\nStock: {dict["stock"]}")
+            print("------------------------------------------------")
+            found = True
+
+    if not found:
+        print("Product no found")
+    
     return
 
 def display_all(inv):
-    print("------------------------------------------------")
-    for item in inv:
-        print(f"ID: {item["id"]} | Name: {item["name"]} | Price: {item["price"]} | Stock: {item["stock"]}")
+    print("\nCurrent Inventory\n"
+          "------------------------------------------------")
+    for dict in inv:
+        print(f"ID: {dict["id"]} | Name: {dict["name"]} | Price: ${dict["price"]} | Stock: {dict["stock"]}")
     print("------------------------------------------------")
     return
 
@@ -90,7 +106,7 @@ def display_all(inv):
 def get_valid_input():
     while True:
         try:
-            user = input("Enter option: ")
+            user = input("\nEnter option: ")
             value = int(user)
             if 1 <= value <= 6:
                 return value
@@ -116,7 +132,6 @@ def load_inventory():
         inv_list = json.load(file)
 
     print("Inventory loaded successfully!")
-    print(inv_list)
     return inv_list
     
 
@@ -130,11 +145,22 @@ def save_inventory(inv_list):
     return
 
 def main():
+    print("============================================================\n"
+            "INVENTORY MANAGEMENT SYSTEM\n"
+            "============================================================\n")
+
     inventory = load_inventory()
     exit_program = False
-    print("============================================================")
-    print("INVENTORY MANAGEMENT SYSTEM")
-    print("============================================================")
+
+    print("\n----------- MENU -----------"
+            "\n1. Display All Products"
+            "\n2. Add Product"
+            "\n3. Update Stock"
+            "\n4. Search Product"
+            "\n5. Save Inventory"
+            "\n6. Exit"
+            "\n----------------------------")
+
     while not exit_program:
         option = get_valid_input()
         match option:
